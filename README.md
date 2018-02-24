@@ -1,8 +1,8 @@
 涉及到技术或者框架：nodejs、koa2、mongodb、es2015+
 - nodejs：http://nodejs.cn/api/
 - koa2：https://chenshenhai.github.io/koa2-note/note/start/quick.html
-- mongoose(操作mongodb)：
-http://www.nodeclass.com/api/mongoose.html 	
+- mongoose(操作mongodb)：  
+http://mongoosejs.com/
 https://cnodejs.org/topic/548e54d157fd3ae46b233502 
 https://cnodejs.org/topic/504b4924e2b84515770103dd
 - mongodb：http://docs.mongoing.com/manual-zh/
