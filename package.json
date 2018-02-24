@@ -1,0 +1,36 @@
+{
+  "name": "koa2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^1.29.4",
+    "date-fns": "^1.29.0",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-generic-session-mongo": "^0.4.0",
+    "koa-handle-error": "^0.0.5",
+    "koa-router": "^7.4.0",
+    "koa-scheme": "^2.2.1",
+    "koa-session-minimal": "^3.0.4",
+    "koa-static": "^4.0.2",
+    "ldapjs": "^1.0.2",
+    "mongoose": "^5.0.7",
+    "node-xlsx": "^0.11.2",
+    "nodemailer": "^4.6.0",
+    "validator": "^9.4.1"
+  },
+  "devDependencies": {},
+  "author": "yuri",
+  "license": "ISC",
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0"
+  }
+}
