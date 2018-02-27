@@ -14,7 +14,8 @@ module.exports = {
         "request": {
             "body": {
                 "name": validator.isEmail,
-                "checkUser": validator.isBoolean
+                // validator的入参现在必须是string，等待koa-scheme解决
+                // "checkUser": validator.isBoolean
             }
         }
     }
