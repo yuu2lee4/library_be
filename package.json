@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^1.29.4",
+    "config": "^1.30.0",
     "date-fns": "^1.29.0",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",

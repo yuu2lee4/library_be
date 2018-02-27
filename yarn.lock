@@ -130,9 +130,9 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "http://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-config@^1.29.4:
-  version "1.29.4"
-  resolved "http://registry.npm.taobao.org/config/download/config-1.29.4.tgz#1b42752ed86b363fc4025960569fd74978862a92"
+config@^1.30.0:
+  version "1.30.0"
+  resolved "http://registry.npm.taobao.org/config/download/config-1.30.0.tgz#1d60a9f35348a13c175798d384e81a5a16c3ba6e"
   dependencies:
     json5 "0.4.0"
     os-homedir "1.0.2"
