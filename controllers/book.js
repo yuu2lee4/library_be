@@ -131,7 +131,7 @@ exports.export = async ctx=>{
             }
         }
         const buffer = xlsx.build([{name: "借出列表", data: exportData}]);
-        const filename = `借书人列表-${format(new Date(),'YYYY-MM-DDTHH-mm-ss')}.xlsx`;
+        const filename = `借书人列表-${format(new Date(),'yyyy-MM-ddTHH-mm-ss')}.xlsx`;
         await util.promisify(fs.writeFile)(path.resolve('upload', filename),buffer);
         ctx.body = {code:0,data: `${config.get('server.url')}/${filename}`};
     }
