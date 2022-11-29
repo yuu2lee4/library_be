@@ -1,6 +1,6 @@
 const Book = require('../controllers/book')
 const router = require('koa-router')({prefix : '/book'})
-const auth = require('../config/auth')
+const auth = require('../middwares/auth')
 
 router.get('/', Book.list)
 router.get('/search', Book.search)

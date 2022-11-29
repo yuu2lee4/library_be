@@ -1,6 +1,6 @@
 const Tag = require('../controllers/tag')
 const router = require('koa-router')({prefix : '/tag'})
-const auth = require('../config/auth')
+const auth = require('../middwares/auth')
 
 router.get('/', Tag.list)
 router.get('/search', Tag.search)
