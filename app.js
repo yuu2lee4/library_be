@@ -30,7 +30,7 @@ app.use(errorHandler(onError))
         }),
         store: new MongoStore()
     }))
-    .use(scheme(path.join(__dirname + '/config/scheme.js'), {debug: true}))
+    .use(scheme(path.join(__dirname + '/validate/scheme.js'), {debug: true}))
     .use(router.routes())
     .use(router.allowedMethods())
 
