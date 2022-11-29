@@ -11,12 +11,13 @@ https://cnodejs.org/topic/504b4924e2b84515770103dd
 nodejs社区：https://cnodejs.org
 
 项目运行指南：  
-1、安装node8.x，安装完后可在命令行输入node -v查看版本，以便确认安装成功  
-2、在命令行里，输入npm install -g nrm（nrm可以管理npm的源，安装完之后可以npm use taobao切换淘宝的源，也可以用yarn替代npm)  
+1、安装node18.x，安装完后可在命令行输入node -v查看版本，以便确认安装成功  
+2、在命令行里，输入npm install -g nrm（nrm可以管理npm的源，安装完之后可以nrm use taobao切换淘宝的源)  
 3、在命令行里，输入npm i -g nodemon全局安装nodemon（nodemon可以用来监控你 node.js 源代码的任何变化和自动重启你的服务器）  
 4、安装mongodb，建立一个名为library的数据库并运行，可以使用robo 3t进行图形化管理  
-5、clone library_be，进入项目根目录输入npm install安装依赖  
-6、配置config/mail.js（以126邮箱为示例）
+5、在命令行里，输入npm install -g pnpm  
+6、clone library_be，进入项目根目录输入pnpm install安装依赖  
+7、配置config/mail.js（以126邮箱为示例）
 ```javascript
 module.exports = {
     host: 'smtp.126.com',
@@ -29,7 +30,7 @@ module.exports = {
     }
 }
 ```
-7、如果使用ldap，需要配置config/ldap.js
+8、如果使用ldap，需要配置config/ldap.js
 ```javascript
 module.exports = {
     server: "ldap://ldapservice.domain.com",
@@ -45,8 +46,8 @@ module.exports = {
 - `searchDn` 查询用户数据的路径，类似数据库中的一张表的地址，注意这里也必须是全路径;
 - `searchStandard` 查询条件，这里是 mail 表示查询用户信息是通过邮箱信息来查询的。注意，该字段信息与LDAP数据库存储数据的字段相对应，如果如果存储用户邮箱信息的字段是 email, 这里就需要修改成 email.
 
-8、配置完后输入npm start就可以启动后端了  
-9、启动前端(https://github.com/yuu2lee4/library_fe)
+9、配置完后输入npm start就可以启动后端了  
+10、启动前端(https://github.com/yuu2lee4/library_fe)
 
 目录结构:
 ````
