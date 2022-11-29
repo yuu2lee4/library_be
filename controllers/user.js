@@ -35,8 +35,10 @@ exports.getUser = async ctx=>{
 
 exports.ldapLogin = async ctx=>{
     try {
+        ldapOpt =  config.get('ldap');
+        if (!ldapOpt) return ctx.body = { code:208 ,msg:  '未开启ldap功能' }
         const { name, password } = ctx.request.body;
-        const isValid = await ldap.ldapQuery(name, password);
+        const isValid = await ldap.ldapQuery(name, password, ldapOpt);
         console.log('isVaild', isValid);
 
         let user = await User.findOne({name});

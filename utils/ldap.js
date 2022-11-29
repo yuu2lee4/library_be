@@ -1,7 +1,6 @@
 const ldap = require("ldapjs");
-const ldapLogin = require('config').get('ldap');
 
-exports.ldapQuery = (username, password) => {
+exports.ldapQuery = (username, password, ldapLogin = {}) => {
   return new Promise((resolve, reject) => {
 
     //  使用ldapjs库创建一个LDAP客户端
