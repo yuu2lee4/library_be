@@ -9,28 +9,28 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^1.30.0",
-    "date-fns": "^1.29.0",
-    "koa": "^2.5.0",
-    "koa-bodyparser": "^4.2.0",
-    "koa-convert": "^1.2.0",
+    "config": "^3.3.8",
+    "date-fns": "^2.29.3",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-convert": "^2.0.0",
     "koa-generic-session-mongo": "^0.4.0",
     "koa-handle-error": "^0.0.5",
-    "koa-router": "^7.4.0",
-    "koa-scheme": "^2.2.1",
-    "koa-session-minimal": "^3.0.4",
-    "koa-static": "^4.0.2",
-    "ldapjs": "^1.0.2",
-    "mongoose": "^5.0.7",
-    "node-xlsx": "^0.11.2",
-    "nodemailer": "^4.6.0",
-    "validator": "^9.4.1"
+    "koa-router": "^12.0.0",
+    "koa-scheme": "^3.0.0",
+    "koa-session-minimal": "^4.0.3",
+    "koa-static": "^5.0.0",
+    "ldapjs": "^2.3.3",
+    "mongoose": "^6.7.4",
+    "node-xlsx": "^0.21.0",
+    "nodemailer": "^6.8.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {},
   "author": "yuri",
   "license": "ISC",
   "engines": {
-    "node": ">= 8.0.0",
-    "npm": ">= 5.0.0"
+    "node": ">= 18.0.0",
+    "npm": ">= 8.0.0"
   }
 }
