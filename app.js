@@ -8,7 +8,7 @@ const scheme = require('koa-scheme');
 const errorHandler = require('koa-handle-error')
 const path = require('path')
 const router = require('./routers')
-const databaseConfig = require('./config/database'); 
+const databaseConfig = require('config').get('mongo');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb://${databaseConfig.url}/${databaseConfig.name}`);

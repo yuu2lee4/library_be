@@ -17,27 +17,30 @@ nodejs社区：https://cnodejs.org
 4、安装mongodb，建立一个名为library的数据库并运行，可以使用robo 3t进行图形化管理  
 5、在命令行里，输入npm install -g pnpm  
 6、clone library_be，进入项目根目录输入pnpm install安装依赖  
-7、配置config/mail.js（以126邮箱为示例）
-```javascript
-module.exports = {
-    host: 'smtp.126.com',
-    port: 465,
-    secure: true,
-    //rejectUnauthorized: false,
-    auth: {
-        user: "username@126.com", // 账号
-        pass: "password" // 密码
-    }
+7、配置config/default.json里的邮箱（以126邮箱为示例）
+```json
+{
+    "mail": {
+        "host": "smtp.126.com",
+        "port": 465,
+        "secure": true,
+        "auth": {
+            "user": "username@126.com", 
+            "pass": "password"
+        }
+    } 
 }
 ```
-8、如果使用ldap，需要配置config/ldap.js
-```javascript
-module.exports = {
-    server: "ldap://ldapservice.domain.com",
-    baseDn: "CN=Admin,CN=Users,DC=test,DC=com",
-    bindPassword: "password123",
-    searchDn: "OU=UserContainer,DC=test,DC=com",
-    searchStandard: "mail"
+8、如果使用ldap，需要配置config/default.json里的ldap
+```json
+{
+    "ldap": {
+        "server": "ldap://ldapservice.domain.com",
+        "baseDn": "CN=Admin,CN=Users,DC=test,DC=com",
+        "bindPassword": "password123",
+        "searchDn": "OU=UserContainer,DC=test,DC=com",
+        "searchStandard": "mail"
+    }
 }
 ```
 - `server` LDAP 服务器地址，前面需要加上 ldap:// 前缀，也可以是 - ldaps:// 表示是通过 SSL 连接;

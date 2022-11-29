@@ -1,5 +1,5 @@
 const ldap = require("ldapjs");
-const ldapLogin = require('../config/ldap');
+const ldapLogin = require('config').get('ldap');
 
 exports.ldapQuery = (username, password) => {
   return new Promise((resolve, reject) => {

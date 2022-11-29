@@ -1,5 +1,25 @@
 {
     "server": {
         "url": "http://localhost:8080"
-    } 
+    },
+    "mongo": {
+        "url": "localhost",
+        "name": "library"
+    },
+    "mail": {
+        "host": "smtp.126.com",
+        "port": 465,
+        "secure": true,
+        "auth": {
+            "user": "username@126.com", 
+            "pass": "password"
+        }
+    },
+    "ldap": {
+        "server": "ldap://ldapservice.domain.com",
+        "baseDn": "CN=Admin,CN=Users,DC=test,DC=com",
+        "bindPassword": "password123",
+        "searchDn": "OU=UserContainer,DC=test,DC=com",
+        "searchStandard": "mail"
+    }
 }

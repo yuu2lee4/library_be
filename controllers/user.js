@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const Book = require('../models/book')
 const mailer = require('../utils/mailer')
-const mailConfig = require('../config/mail')
+const config = require('config');
 const ldap = require('../utils/ldap')
 
 exports.register = async ctx=>{
@@ -99,7 +99,7 @@ exports.getPin = async ctx=>{
 
         // setup e-mail data with unicode symbols
         const mailOptions = {
-            from: mailConfig.auth.user, // sender address
+            from: config.get('mail.auth.user'), // sender address
             to: name, // list of receivers
             subject: 'G7读书验证码', // Subject line
             text: `这是您的邮箱注册验证码${rs}，请在两分钟内使用哦`, // plaintext body
