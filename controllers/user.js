@@ -103,7 +103,7 @@ exports.getPin = async ctx=>{
         const mailOptions = {
             from: config.get('mail.auth.user'), // sender address
             to: name, // list of receivers
-            subject: 'G7读书验证码', // Subject line
+            subject: '鲲鹏读书验证码', // Subject line
             text: `这是您的邮箱注册验证码${rs}，请在两分钟内使用哦`, // plaintext body
             html: '' // html body
         };

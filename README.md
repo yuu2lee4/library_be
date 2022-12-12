@@ -1,3 +1,6 @@
+## 关于本项目
+该项目是我自学node所做的一个书架借阅管理系统(鲲鹏)，它分为后台管理系统和书籍借阅系统。后台管理系统可管理书籍的分类、录入(可通过isbn自动获取书籍信息)、和借出记录。书籍借阅系统可进行用户注册(公司里可用ldap)、书籍展示、书籍借阅归还。
+
 涉及到技术或者框架：nodejs、koa2、mongodb、es2015+
 - nodejs：http://nodejs.cn/api/
 - koa2：https://chenshenhai.github.io/koa2-note/note/start/quick.html
@@ -31,7 +34,10 @@ nodejs社区：https://cnodejs.org
     } 
 }
 ```
-8、如果使用ldap，需要配置config/default.json里的ldap
+8、如果使用isbn获取接口，需要配置config/default.json里的isbn.apiky  
+apikey需要去https://jike.xyz/jiekou/isbn.html申请  
+
+9、如果使用ldap，需要配置config/default.json里的ldap
 ```json
 {
     "ldap": {
@@ -49,8 +55,8 @@ nodejs社区：https://cnodejs.org
 - `searchDn` 查询用户数据的路径，类似数据库中的一张表的地址，注意这里也必须是全路径;
 - `searchStandard` 查询条件，这里是 mail 表示查询用户信息是通过邮箱信息来查询的。注意，该字段信息与LDAP数据库存储数据的字段相对应，如果如果存储用户邮箱信息的字段是 email, 这里就需要修改成 email.
 
-9、配置完后输入npm start就可以启动后端了  
-10、启动前端(https://github.com/yuu2lee4/library_fe)
+10、配置完后输入npm start就可以启动后端了  
+11、启动前端(https://github.com/yuu2lee4/library_fe)
 
 目录结构:
 ````
