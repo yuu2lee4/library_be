@@ -95,7 +95,7 @@ exports.getBorrowedBooks = async ctx=>{
             }
         }
     }else{
-        ctx.body = {code:101,msg:'没有借出的书籍!'}
+        ctx.body = {code:102,msg:'没有借出的书籍!'}
     }
 }
 //book export all borrowed books to a excel
@@ -147,4 +147,19 @@ exports.delete = async ctx=>{
     const ids = ctx.query.ids.split();
     await Book.remove({_id: {$in: ids} }).exec();
     ctx.body = {code:0,data: true}
+}
+//get one book
+exports.getByISBN = async ctx=>{
+    const isbn = ctx.params.isbn;
+    const res = await fetch(`${config.get('isbn.api')}/${isbn}?apikey=${config.get('isbn.apikey')}`);
+    if (res.ok) {
+        const data = await res.json();
+        if (data.ret === 0) {
+            ctx.body = { code:0, data: data.data }
+        } else {
+            ctx.body = { code: 103, msg: data.msg || '未知错误' }
+        }
+    } else {
+        ctx.body = { code: 104, msg: res.statusText || '未知错误' }
+    }
 }

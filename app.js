@@ -10,7 +10,6 @@ const path = require('path')
 const router = require('./routers')
 const databaseConfig = require('config').get('mongo');
 
-mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb://${databaseConfig.url}/${databaseConfig.name}`);
 
 const app = new Koa();

@@ -21,7 +21,6 @@ const BookSchema = new Schema({
     identifierList: [String],
     doubanID: String,
     image: String,
-    images: Object,
     summary: String,
     tag_1st: String,
     tag_2nd: String,

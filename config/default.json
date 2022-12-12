@@ -3,7 +3,7 @@
         "url": "http://localhost:8080"
     },
     "mongo": {
-        "url": "localhost",
+        "url": "127.0.0.1:27017",
         "name": "library"
     },
     "mail": {
@@ -21,5 +21,9 @@
         "bindPassword": "password123",
         "searchDn": "OU=UserContainer,DC=test,DC=com",
         "searchStandard": "mail"
+    },
+    "isbn": {
+        "api": "https://api.jike.xyz/situ/book/isbn",
+        "apikey": "需要申请apikey"
     }
 }
