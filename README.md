@@ -1,20 +1,8 @@
 ## 关于本项目
-该项目是我自学node所做的一个书架借阅管理系统(鲲鹏)，它分为后台管理系统和书籍借阅系统。后台管理系统可管理书籍的分类、录入(可通过isbn自动获取书籍信息)、和借出记录。书籍借阅系统可进行用户注册(公司里可用ldap)、书籍展示、书籍借阅归还。
-
-涉及到技术或者框架：nodejs、koa2、mongodb、es2015+
-- nodejs：http://nodejs.cn/api/
-- koa2：https://chenshenhai.github.io/koa2-note/note/start/quick.html
-- es2015入门：http://es6.ruanyifeng.com/ es2015也叫es6
-- mongoose(操作mongodb)：  
-http://mongoosejs.com/  
-https://cnodejs.org/topic/548e54d157fd3ae46b233502  
-https://cnodejs.org/topic/504b4924e2b84515770103dd
-- mongodb：http://docs.mongoing.com/
-
-nodejs社区：https://cnodejs.org
+该项目是一个书架借阅管理系统(鲲鹏)，它分为后台管理系统和书籍借阅系统。后台管理系统可管理书籍的分类、录入(可通过isbn自动获取书籍信息)、和借出记录。书籍借阅系统可进行用户注册(公司里可用ldap)、书籍展示、书籍借阅归还。
 
 项目运行指南：  
-1、安装node18.x，安装完后可在命令行输入node -v查看版本，以便确认安装成功  
+1、安装node20.x，安装完后可在命令行输入node -v查看版本，以便确认安装成功  
 2、在命令行里，输入npm install -g nrm（nrm可以管理npm的源，安装完之后可以nrm use taobao切换淘宝的源)  
 3、在命令行里，输入npm i -g nodemon全局安装nodemon（nodemon可以用来监控你 node.js 源代码的任何变化和自动重启你的服务器）  
 4、安装mongodb，建立一个名为library的数据库并运行，可以使用robo 3t进行图形化管理  
