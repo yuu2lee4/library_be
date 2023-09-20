@@ -8,6 +8,8 @@ const scheme = require('koa-scheme');
 const errorHandler = require('koa-handle-error')
 const path = require('path')
 const router = require('./routers')
+const { koaSwagger } = require('koa2-swagger-ui')
+const swagger = require('./routers/swagger')
 const databaseConfig = require('config').get('mongo');
 
 mongoose.connect(`mongodb://${databaseConfig.url}/${databaseConfig.name}`);
@@ -20,6 +22,13 @@ const onError = err => {
 };
 
 app.use(errorHandler(onError))
+    .use(swagger.routes(), swagger.allowedMethods())
+    .use(koaSwagger({
+        routePrefix: '/swagger',
+        swaggerOptions: {
+          url: 'swagger/swagger.json', 
+        },
+    }))
     .use(bodyParser())
     .use(serve(__dirname + '/upload'))
     .use(serve(path.join(__dirname, '/library_fe/dist')))
