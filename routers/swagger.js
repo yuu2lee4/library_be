@@ -3,17 +3,18 @@ const path = require('path')
 const swaggerJSDoc = require('swagger-jsdoc')  //引入swagger-jsdoc
 
 const options = {
-    definition: {
-        openapi: '3.0.0',
-        info: {
-          title: '接口文档',
-          version: '1.0.0',
-        },
-      },
-    //写有注解的router的存放地址, 最好使用path.join(),这里使用物理路径
-    apis: [
-        path.join(__dirname, "./*.js"),
-    ]
+  failOnErrors: true,
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: '接口文档',
+      version: '1.0.0',
+    },
+  },
+  //写有注解的router的存放地址, 最好使用path.join(),这里使用物理路径
+  apis: [
+      path.join(__dirname, "./*.js"),
+  ]
 }
 const swaggerSpec = swaggerJSDoc(options)
 
