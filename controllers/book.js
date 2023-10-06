@@ -139,13 +139,13 @@ exports.export = async ctx=>{
 //book deleteOne
 exports.deleteOne = async ctx=>{
     const id = ctx.params.id
-    await Book.remove({_id: id}).exec();
+    await Book.deleteOne({_id: id}).exec();
     ctx.body = {code:0,data: true}
 }
 //book delete
 exports.delete = async ctx=>{
     const ids = ctx.query.ids.split();
-    await Book.remove({_id: {$in: ids} }).exec();
+    await Book.deleteMany({_id: {$in: ids} }).exec();
     ctx.body = {code:0,data: true}
 }
 //get one book

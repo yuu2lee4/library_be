@@ -70,12 +70,12 @@ exports.search = async ctx=>{
 //tag deleteOne
 exports.deleteOne = async ctx=>{
     const id = ctx.params.id
-    await Tag.remove({_id: id}).exec();
+    await Tag.deleteOne({_id: id}).exec();
     ctx.body = {code:0,data: true}
 }
 //tag delete
 exports.delete = async ctx=>{
     const ids = ctx.query.ids.split();
-    await Tag.remove({_id: {$in: ids} }).exec();
+    await Tag.deleteMany({_id: {$in: ids} }).exec();
     ctx.body = {code:0,data: true}
 }
