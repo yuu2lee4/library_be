@@ -23,14 +23,10 @@ exports.register = async ctx=>{
 }
 
 exports.getUser = async ctx=>{
-    if(ctx.session.user){
-        let user = await User.findById(ctx.session.user._id);
-        delete user.password
-        ctx.session.user = JSON.parse(JSON.stringify(user))
-        ctx.body = {code:0,data: ctx.session.user}
-    }else{
-        ctx.body = {code:205,msg: '您尚未登录！'}
-    }
+    const user = await User.findById(ctx.session.user._id);
+    delete user.password
+    ctx.session.user = JSON.parse(JSON.stringify(user))
+    ctx.body = {code:0,data: ctx.session.user}
 }
 
 exports.ldapLogin = async ctx=>{
@@ -80,7 +76,7 @@ exports.login = async ctx=>{
 
 //logout
 exports.logout =  async ctx=>{
-    delete ctx.session.user
+    if (ctx.session.user) delete ctx.session.user
     ctx.body = {code:0,data: true}
 }
 

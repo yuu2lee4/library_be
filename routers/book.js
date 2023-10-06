@@ -39,8 +39,8 @@ router.get('/search', Book.search)
 router.get('/getBorrowedBooks', Book.getBorrowedBooks)
 router.get('/export', Book.export)
 router.get('/:id', Book.get)
-router.post('/', auth.isAdmin, Book.save)
-router.delete('/:id', auth.isAdmin, Book.deleteOne)
-router.delete('/', auth.isAdmin, Book.delete)
+router.post('/', auth.isLogin, auth.isAdmin, Book.save)
+router.delete('/:id', auth.isLogin, auth.isAdmin, Book.deleteOne)
+router.delete('/', auth.isLogin, auth.isAdmin, Book.delete)
 
 module.exports = router;

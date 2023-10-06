@@ -1,6 +1,6 @@
 const User = require('../controllers/user')
 const router = require('koa-router')({prefix : '/user'})
-
+const auth = require('../middwares/auth')
 
 /**
  * @openapi
@@ -30,10 +30,10 @@ router.post('/register', User.register)
 router.post('/resetPassword', User.resetPassword)
 router.post('/login', User.login)
 router.post('/ldapLogin', User.ldapLogin)
-router.post('/borrow', User.borrow)
-router.post('/return', User.return)
+router.post('/borrow', auth.isLogin, User.borrow)
+router.post('/return', auth.isLogin, User.return)
 router.post('/getPin', User.getPin)
-router.get('/', User.getUser)
+router.get('/', auth.isLogin, User.getUser)
 router.get('/logout', User.logout)
 
 module.exports = router
