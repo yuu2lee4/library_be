@@ -21,13 +21,13 @@
     "koa-scheme": "^3.0.0",
     "koa-session-minimal": "^4.0.3",
     "koa-static": "^5.0.0",
-    "koa2-swagger-ui": "^5.9.0",
+    "koa2-swagger-ui": "^5.9.1",
     "ldapjs": "^2.3.3",
-    "mongoose": "^7.3.2",
+    "mongoose": "^7.5.4",
     "node-xlsx": "^0.23.0",
-    "nodemailer": "^6.9.3",
+    "nodemailer": "^6.9.5",
     "swagger-jsdoc": "^6.2.8",
-    "validator": "^13.9.0"
+    "validator": "^13.11.0"
   },
   "author": "yuri",
   "license": "ISC",

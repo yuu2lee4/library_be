@@ -42,26 +42,26 @@ dependencies:
     specifier: ^5.0.0
     version: 5.0.0
   koa2-swagger-ui:
-    specifier: ^5.9.0
-    version: registry.npmmirror.com/koa2-swagger-ui@5.9.0
+    specifier: ^5.9.1
+    version: registry.npmmirror.com/koa2-swagger-ui@5.9.1
   ldapjs:
     specifier: ^2.3.3
     version: 2.3.3
   mongoose:
-    specifier: ^7.3.2
-    version: registry.npmmirror.com/mongoose@7.3.2
+    specifier: ^7.5.4
+    version: registry.npmmirror.com/mongoose@7.5.4
   node-xlsx:
     specifier: ^0.23.0
     version: registry.npmmirror.com/node-xlsx@0.23.0
   nodemailer:
-    specifier: ^6.9.3
-    version: registry.npmmirror.com/nodemailer@6.9.3
+    specifier: ^6.9.5
+    version: registry.npmmirror.com/nodemailer@6.9.5
   swagger-jsdoc:
     specifier: ^6.2.8
     version: registry.npmmirror.com/swagger-jsdoc@6.2.8(openapi-types@12.1.3)
   validator:
-    specifier: ^13.9.0
-    version: registry.npmmirror.com/validator@13.9.0
+    specifier: ^13.11.0
+    version: registry.npmmirror.com/validator@13.11.0
 
 packages:
 
@@ -570,6 +570,16 @@ packages:
     name: '@jsdevtools/ono'
     version: 7.1.3
     dev: false
+
+  registry.npmmirror.com/@mongodb-js/saslprep@1.1.0:
+    resolution: {integrity: sha512-Xfijy7HvfzzqiOAhAepF4SGN5e9leLkMvg/OPOF97XemjfVCYN/oWa75wnkc6mltMSTwY+XlbhWgUOJmkFspSw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@mongodb-js/saslprep/-/saslprep-1.1.0.tgz}
+    name: '@mongodb-js/saslprep'
+    version: 1.1.0
+    requiresBuild: true
+    dependencies:
+      sparse-bitfield: registry.npmmirror.com/sparse-bitfield@3.0.3
+    dev: false
+    optional: true
 
   registry.npmmirror.com/@types/accepts@1.3.5:
     resolution: {integrity: sha512-jOdnI/3qTpHABjM5cx1Hc0sKsPoYCp+DP/GJRGtDlPd7fiV9oXGGIcjW/ZOxLIvjGz8MA+uMZI9metHlgqbgwQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/accepts/-/accepts-1.3.5.tgz}
@@ -1336,10 +1346,10 @@ packages:
       koa-compose: registry.npmmirror.com/koa-compose@4.1.0
     dev: false
 
-  registry.npmmirror.com/koa2-swagger-ui@5.9.0:
-    resolution: {integrity: sha512-L+Ju47K3jzHwLHTapUH57SfWf62bnQt7Rvzl89BdvDHSteWfqzflw9D5gXG6kqlzMaxSyC7UEdFKCUKyHE30dw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/koa2-swagger-ui/-/koa2-swagger-ui-5.9.0.tgz}
+  registry.npmmirror.com/koa2-swagger-ui@5.9.1:
+    resolution: {integrity: sha512-9qz3BGLgekWNhndyuTj9LbGZvGuY5JFctIwnLG9NeGiHNFJnWJ1rtPpV/iM5xqaPmha6cEWBs9SU1/5VqfIm8g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/koa2-swagger-ui/-/koa2-swagger-ui-5.9.1.tgz}
     name: koa2-swagger-ui
-    version: 5.9.0
+    version: 5.9.1
     dependencies:
       '@types/koa': registry.npmmirror.com/@types/koa@2.13.9
       handlebars: registry.npmmirror.com/handlebars@4.7.8
@@ -1466,17 +1476,23 @@ packages:
       whatwg-url: registry.npmmirror.com/whatwg-url@11.0.0
     dev: false
 
-  registry.npmmirror.com/mongodb@5.6.0:
-    resolution: {integrity: sha512-z8qVs9NfobHJm6uzK56XBZF8XwM9H294iRnB7wNjF0SnY93si5HPziIJn+qqvUR5QOff/4L0gCD6SShdR/GtVQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mongodb/-/mongodb-5.6.0.tgz}
+  registry.npmmirror.com/mongodb@5.8.1:
+    resolution: {integrity: sha512-wKyh4kZvm6NrCPH8AxyzXm3JBoEf4Xulo0aUWh3hCgwgYJxyQ1KLST86ZZaSWdj6/kxYUA3+YZuyADCE61CMSg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mongodb/-/mongodb-5.8.1.tgz}
     name: mongodb
-    version: 5.6.0
+    version: 5.8.1
     engines: {node: '>=14.20.1'}
     peerDependencies:
-      '@aws-sdk/credential-providers': ^3.201.0
+      '@aws-sdk/credential-providers': ^3.188.0
+      '@mongodb-js/zstd': ^1.0.0
+      kerberos: ^1.0.0 || ^2.0.0
       mongodb-client-encryption: '>=2.3.0 <3'
       snappy: ^7.2.2
     peerDependenciesMeta:
       '@aws-sdk/credential-providers':
+        optional: true
+      '@mongodb-js/zstd':
+        optional: true
+      kerberos:
         optional: true
       mongodb-client-encryption:
         optional: true
@@ -1487,24 +1503,26 @@ packages:
       mongodb-connection-string-url: registry.npmmirror.com/mongodb-connection-string-url@2.6.0
       socks: registry.npmmirror.com/socks@2.7.1
     optionalDependencies:
-      saslprep: registry.npmmirror.com/saslprep@1.0.3
+      '@mongodb-js/saslprep': registry.npmmirror.com/@mongodb-js/saslprep@1.1.0
     dev: false
 
-  registry.npmmirror.com/mongoose@7.3.2:
-    resolution: {integrity: sha512-Z86m5ASwYYFyT++wPQTtuTl5Jh052w6G1IM8LxPu/6iuqxQo6nUOaEoGZfMy0ovw3Dyw3415Jue3pYXkRqPkfA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mongoose/-/mongoose-7.3.2.tgz}
+  registry.npmmirror.com/mongoose@7.5.4:
+    resolution: {integrity: sha512-u97BOfBOoCxysnH5X0WeF/O39DO1di75dYU75xaSs9mL3Si0qmP0qLWvWpBRdVkiiRVw+eaqJyKwaq6RvKPVZw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mongoose/-/mongoose-7.5.4.tgz}
     name: mongoose
-    version: 7.3.2
+    version: 7.5.4
     engines: {node: '>=14.20.1'}
     dependencies:
       bson: registry.npmmirror.com/bson@5.4.0
       kareem: registry.npmmirror.com/kareem@2.5.1
-      mongodb: registry.npmmirror.com/mongodb@5.6.0
+      mongodb: registry.npmmirror.com/mongodb@5.8.1
       mpath: registry.npmmirror.com/mpath@0.9.0
       mquery: registry.npmmirror.com/mquery@5.0.0
       ms: registry.npmmirror.com/ms@2.1.3
       sift: registry.npmmirror.com/sift@16.0.1
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
+      - '@mongodb-js/zstd'
+      - kerberos
       - mongodb-client-encryption
       - snappy
       - supports-color
@@ -1563,10 +1581,10 @@ packages:
       xlsx: '@cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz'
     dev: false
 
-  registry.npmmirror.com/nodemailer@6.9.3:
-    resolution: {integrity: sha512-fy9v3NgTzBngrMFkDsKEj0r02U7jm6XfC3b52eoNV+GCrGj+s8pt5OqhiJdWKuw51zCTdiNR/IUD1z33LIIGpg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nodemailer/-/nodemailer-6.9.3.tgz}
+  registry.npmmirror.com/nodemailer@6.9.5:
+    resolution: {integrity: sha512-/dmdWo62XjumuLc5+AYQZeiRj+PRR8y8qKtFCOyuOl1k/hckZd8durUUHs/ucKx6/8kN+wFxqKJlQ/LK/qR5FA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nodemailer/-/nodemailer-6.9.5.tgz}
     name: nodemailer
-    version: 6.9.3
+    version: 6.9.5
     engines: {node: '>=6.0.0'}
     dev: false
 
@@ -1765,17 +1783,6 @@ packages:
     name: safer-buffer
     version: 2.1.2
     dev: false
-
-  registry.npmmirror.com/saslprep@1.0.3:
-    resolution: {integrity: sha512-/MY/PEMbk2SuY5sScONwhUDsV2p77Znkb/q3nSVstq/yQzYJOH/Azh29p9oJLsl3LnQwSvZDKagDGBsBwSooag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/saslprep/-/saslprep-1.0.3.tgz}
-    name: saslprep
-    version: 1.0.3
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      sparse-bitfield: registry.npmmirror.com/sparse-bitfield@3.0.3
-    dev: false
-    optional: true
 
   registry.npmmirror.com/semver@5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/semver/-/semver-5.7.1.tgz}
@@ -1997,10 +2004,10 @@ packages:
       spdx-expression-parse: registry.npmmirror.com/spdx-expression-parse@3.0.1
     dev: false
 
-  registry.npmmirror.com/validator@13.9.0:
-    resolution: {integrity: sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/validator/-/validator-13.9.0.tgz}
+  registry.npmmirror.com/validator@13.11.0:
+    resolution: {integrity: sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/validator/-/validator-13.11.0.tgz}
     name: validator
-    version: 13.9.0
+    version: 13.11.0
     engines: {node: '>= 0.10'}
     dev: false
 
@@ -2063,7 +2070,7 @@ packages:
     dependencies:
       lodash.get: registry.npmmirror.com/lodash.get@4.4.2
       lodash.isequal: registry.npmmirror.com/lodash.isequal@4.5.0
-      validator: registry.npmmirror.com/validator@13.9.0
+      validator: registry.npmmirror.com/validator@13.11.0
     optionalDependencies:
       commander: registry.npmmirror.com/commander@9.5.0
     dev: false
