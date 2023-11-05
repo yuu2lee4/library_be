@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema
+import mongoose from "mongoose";
+
+const { Schema } = mongoose;
 
 const borrowers = new Schema({
     name: String,
@@ -8,8 +9,7 @@ const borrowers = new Schema({
         type: Date,
         default: Date.now()
     }
-},{ _id: false, autoIndex: false })
-
+}, { _id: false, autoIndex: false });
 const BookSchema = new Schema({
     isbn: {
         type: String,
@@ -30,29 +30,27 @@ const BookSchema = new Schema({
             type: Date,
             default: Date.now()
         },
-         updateAt: {
+        updateAt: {
             type: Date,
             default: Date.now()
         }
     }
-})
-
-BookSchema.pre('save', function(next){
-    if(this.isNew){
-        this.meta.createAt = this.meta.updateAt = Date.now()
-    }else{
-        this.meta.updateAt = Date.now()
+});
+BookSchema.pre('save', function (next) {
+    if (this.isNew) {
+        this.meta.createAt = this.meta.updateAt = Date.now();
     }
-    next()
-})
-
+    else {
+        this.meta.updateAt = Date.now();
+    }
+    next();
+});
 BookSchema.statics = {
-    fetch: function(cb){
+    fetch: function (cb) {
         return this
-        .find({})
-        .sort('meta.updateAt')
-        .exec(cb)
+            .find({})
+            .sort('meta.updateAt')
+            .exec(cb);
     }
-}
-
-module.exports = mongoose.model('Book',BookSchema)
+};
+export default mongoose.model('Book', BookSchema);
