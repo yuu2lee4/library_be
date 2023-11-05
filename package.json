@@ -9,7 +9,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "config": "^3.3.9",
     "date-fns": "^2.30.0",
     "koa": "^2.14.2",

@@ -59,7 +59,7 @@ apikey需要去https://jike.xyz/jiekou/isbn.html申请
 ````
 
 特别注意  
-有些node包是c++写的 ~~（比如本项目的bcrypt）~~（已改为无需编译的bcryptjs），需要node-gyp编译，nodejs安装的时候就自带了node-gyp，然后还需要安装python和c++编译器：
+如果安装依赖c++的包，需要node-gyp编译，nodejs安装的时候就自带了node-gyp，然后还需要安装python和c++编译器：
 - Linux：GCC
 - Mac：Command Line Tools或Xcode
 - Windows需要注意的是，你需要自己全局安装node-gyp: npm install -g node-gyp,然后安装下面文档里写的Windows-Build-Tools

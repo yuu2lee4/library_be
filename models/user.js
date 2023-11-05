@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
-const bcrypt =  require('bcryptjs');
-const SALT_WORK_FACTOR = 10;
+const { pbkdf2 } = require('node:crypto');
+const CRYPTO_SALT = 'library';
 const util = require('util');
 
 const borrowedBooksSchema = new Schema({
@@ -54,21 +54,18 @@ UserSchema.pre('save', function(next){
         delete this.notHashPassword
         next()
     }else{
-        bcrypt.genSalt(SALT_WORK_FACTOR,(err, salt)=> {
-            if(err) return next(err)
-
-            bcrypt.hash(this.password, salt,(err, hash)=> {
-                if(err) return next(err)
-                this.password = hash
-                next()
-            })
-        })
+        pbkdf2(this.password, CRYPTO_SALT, 5000, 64, 'sha512', (err, derivedKey) => {
+            if(err) return next(err);
+            this.password = derivedKey.toString('hex');
+            next();
+        });
     }
 })
 
 UserSchema.methods = {
-    comparePassword(_password){
-        return util.promisify(bcrypt.compare)(_password, this.password);
+    async comparePassword(_password) {
+        const derivedKey = await util.promisify(pbkdf2)(_password, CRYPTO_SALT, 5000, 64, 'sha512');
+        return derivedKey.toString('hex') === this.password;
     }
 }
 

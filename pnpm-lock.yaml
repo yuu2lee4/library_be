@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  bcryptjs:
-    specifier: ^2.4.3
-    version: 2.4.3
   config:
     specifier: ^3.3.9
     version: registry.npmmirror.com/config@3.3.9
@@ -91,10 +88,6 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       precond: 0.2.3
-    dev: false
-
-  /bcryptjs@2.4.3:
-    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
     dev: false
 
   /buffer-shims@1.0.0:
