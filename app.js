@@ -7,9 +7,9 @@ import MongoStore from "koa-generic-session-mongo";
 import scheme from "koa-scheme";
 import errorHandler from "koa-handle-error";
 import path from "path";
-import router from "./routers/index.mjs";
+import router from "./routers/index.js";
 import { koaSwagger } from "koa2-swagger-ui";
-import swagger from "./routers/swagger.mjs";
+import swagger from "./routers/swagger.js";
 import config from "config";
 import createEsmUtils from 'esm-utils'
 
@@ -40,7 +40,7 @@ app.use(errorHandler(onError))
     }),
     store: new MongoStore()
 }))
-    .use(scheme(path.join(dirname + '/validate/scheme.js'), { debug: true }))
+    .use(scheme(path.join(dirname + '/validate/scheme.cjs'), { debug: true }))
     .use(router.routes())
     .use(router.allowedMethods());
     

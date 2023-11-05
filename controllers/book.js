@@ -1,4 +1,4 @@
-import Book from "../models/book.mjs";
+import Book from "../models/book.js";
 import fs from "fs/promises";
 import xlsx from 'node-xlsx';
 import { format } from "date-fns";

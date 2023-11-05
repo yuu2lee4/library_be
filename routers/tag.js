@@ -1,6 +1,6 @@
-import * as Tag from "../controllers/tag.mjs";
+import * as Tag from "../controllers/tag.js";
 import koaRouter from "koa-router";
-import * as auth from "../middwares/auth.mjs";
+import * as auth from "../middwares/auth.js";
 
 const router = koaRouter({ prefix: '/tag' });
 

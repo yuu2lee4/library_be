@@ -1,4 +1,4 @@
-import Tag from "../models/tag.mjs";
+import Tag from "../models/tag.js";
 
 export const save = async (ctx) => {
     const id = ctx.request.body._id;

@@ -1,6 +1,6 @@
-import * as Book from "../controllers/book.mjs";
+import * as Book from "../controllers/book.js";
 import koaRouter from "koa-router";
-import * as auth from "../middwares/auth.mjs";
+import * as auth from "../middwares/auth.js";
 
 const router = koaRouter({ prefix: '/book' });
 

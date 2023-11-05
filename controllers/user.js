@@ -1,8 +1,8 @@
-import User from "../models/user.mjs";
-import Book from "../models/book.mjs";
-import mailer from "../utils/mailer.mjs";
+import User from "../models/user.js";
+import Book from "../models/book.js";
+import mailer from "../utils/mailer.js";
 import config from "config";
-import * as ldap from "../utils/ldap.mjs";
+import * as ldap from "../utils/ldap.js";
 
 export const register = async (ctx) => {
     const name = ctx.request.body.name;

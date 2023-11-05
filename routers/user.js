@@ -1,6 +1,6 @@
-import * as User from "../controllers/user.mjs";
+import * as User from "../controllers/user.js";
 import koaRouter from "koa-router";
-import * as auth from "../middwares/auth.mjs";
+import * as auth from "../middwares/auth.js";
 
 const router = koaRouter({ prefix: '/user' });
 /**

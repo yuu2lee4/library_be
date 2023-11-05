@@ -1,7 +1,7 @@
 import koaRouter from "koa-router";
-import book from "./book.mjs";
-import tag from "./tag.mjs";
-import user from "./user.mjs";
+import book from "./book.js";
+import tag from "./tag.js";
+import user from "./user.js";
 
 const api = koaRouter();
 api.use(book.routes());
