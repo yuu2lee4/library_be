@@ -10,7 +10,8 @@ const path = require('path')
 const router = require('./routers')
 const { koaSwagger } = require('koa2-swagger-ui')
 const swagger = require('./routers/swagger')
-const databaseConfig = require('config').get('mongo');
+const config = require('config');
+const databaseConfig = config.get('mongo');
 
 mongoose.connect(`mongodb://${databaseConfig.url}/${databaseConfig.name}`);
 
@@ -42,7 +43,7 @@ app.use(errorHandler(onError))
     .use(router.routes())
     .use(router.allowedMethods())
 
-const port = 8888;
+const { url, port } = config.get('server');
 app.listen(port, ()=>{
-    console.log(`app start : localhost:${port}`);
+    console.log(`app start : ${url}:${port}`);
 });

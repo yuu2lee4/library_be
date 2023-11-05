@@ -1,8 +1,7 @@
 const Book = require('../models/book')
-const fs = require('fs')
+const fs = require('fs/promises')
 const xlsx = require('node-xlsx').default
 const format = require('date-fns/format')
-const util =  require('util')
 const path =  require('path')
 const config = require('config');
 
@@ -132,8 +131,9 @@ exports.export = async ctx=>{
         }
         const buffer = xlsx.build([{name: "借出列表", data: exportData}]);
         const filename = `借书人列表-${format(new Date(),'yyyy-MM-ddTHH-mm-ss')}.xlsx`;
-        await util.promisify(fs.writeFile)(path.resolve('upload', filename),buffer);
-        ctx.body = {code:0,data: `${config.get('server.url')}/${filename}`};
+        await fs.writeFile(path.resolve('upload', filename),buffer);
+        const { url, port } = config.get('server');
+        ctx.body = {code:0,data: `${url}:${port}/${filename}`};
     }
 }
 //book deleteOne

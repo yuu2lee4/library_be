@@ -1,6 +1,7 @@
 {
     "server": {
-        "url": "http://localhost:8080"
+        "url": "http://localhost",
+        "port": 8888
     },
     "mongo": {
         "url": "127.0.0.1:27017",
