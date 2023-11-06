@@ -26,11 +26,11 @@ const onError = err => {
 app.use(errorHandler(onError))
     .use(swagger.routes(), swagger.allowedMethods())
     .use(koaSwagger({
-    routePrefix: '/swagger',
-    swaggerOptions: {
-        url: 'swagger/swagger.json',
-    },
-}))
+        routePrefix: '/swagger',
+        swaggerOptions: {
+            url: 'swagger/swagger.json',
+        },
+    }))
     .use(bodyParser())
     .use(serve(dirname + '/upload'))
     .use(serve(path.join(dirname, '/library_fe/dist')))

@@ -7,7 +7,7 @@
 3、在命令行里，输入npm i -g nodemon全局安装nodemon（nodemon可以用来监控你 node.js 源代码的任何变化和自动重启你的服务器）  
 4、安装mongodb，建立一个名为library的数据库并运行，可以使用robo 3t进行图形化管理  
 5、在命令行里，输入npm install -g pnpm  
-6、clone library_be，进入项目根目录输入pnpm install安装依赖  
+6、clone本项目，进入项目根目录输入pnpm install安装依赖  
 7、配置config/default.json里的邮箱（以126邮箱为示例）
 ```json
 {
@@ -44,7 +44,7 @@ apikey需要去https://jike.xyz/jiekou/isbn.html申请
 - `searchStandard` 查询条件，这里是 mail 表示查询用户信息是通过邮箱信息来查询的。注意，该字段信息与LDAP数据库存储数据的字段相对应，如果如果存储用户邮箱信息的字段是 email, 这里就需要修改成 email.
 
 10、配置完后输入npm start就可以启动后端了  
-11、启动前端(https://github.com/yuu2lee4/library_fe)
+11、启动前端[vue3版本](https://github.com/yuu2lee4/library_fe)或[react版本](https://github.com/yuu2lee4/library_react)
 
 目录结构:
 ````
