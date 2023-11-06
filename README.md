@@ -23,7 +23,7 @@
 }
 ```
 8、如果使用isbn获取接口，需要配置config/default.json里的isbn.apiky  
-apikey需要去https://jike.xyz/jiekou/isbn.html申请  
+apikey需要去[申请](https://jike.xyz/jiekou/isbn.html)
 
 9、如果使用ldap，需要配置config/default.json里的ldap
 ```json
