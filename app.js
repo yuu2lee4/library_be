@@ -16,7 +16,7 @@ import createEsmUtils from 'esm-utils'
 const { dirname } = createEsmUtils(import.meta)
 
 const databaseConfig = config.get('mongo');
-mongoose.connect(`mongodb://${databaseConfig.url}/${databaseConfig.name}`);
+mongoose.connect(databaseConfig.url);
 
 const app = new Koa();
 app.keys = ['keys', 'keykeys'];
