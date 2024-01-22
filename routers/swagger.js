@@ -1,9 +1,6 @@
 import koaRouter from "koa-router";
 import path from "path";
 import swaggerJSDoc from "swagger-jsdoc";
-import createEsmUtils from 'esm-utils';
-
-const { dirname } = createEsmUtils(import.meta);
 
 const router = koaRouter();
 const options = {
@@ -17,7 +14,7 @@ const options = {
     },
     //写有注解的router的存放地址, 最好使用path.join(),这里使用物理路径
     apis: [
-        path.join(dirname, "./*.js"),
+        path.join(import.meta.dirname, "./*.js"),
     ]
 };
 const swaggerSpec = swaggerJSDoc(options);

@@ -14,9 +14,6 @@ dependencies:
   date-fns:
     specifier: ^2.30.0
     version: registry.npmmirror.com/date-fns@2.30.0
-  esm-utils:
-    specifier: ^4.2.1
-    version: 4.2.1
   koa:
     specifier: ^2.15.0
     version: 2.15.0
@@ -438,13 +435,6 @@ packages:
     engines: {node: '>=0.8.0'}
     dev: false
 
-  /esm-utils@4.2.1:
-    resolution: {integrity: sha512-a7t8pDmZ5MeYfo2pM5EcqeU+BqKobUFKnWkM17JOhTlR88OSosLa9Ak4bgm+htoF15HRf7tfrXNR62UogmIODg==, tarball: https://registry.npmmirror.com/esm-utils/-/esm-utils-4.2.1.tgz}
-    dependencies:
-      import-meta-resolve: 4.0.0
-      url-or-path: 2.3.0
-    dev: false
-
   /extsprintf@1.4.1:
     resolution: {integrity: sha512-Wrk35e8ydCKDj/ArClo1VrPVmN8zph5V4AtHwIuHhvMXsKf73UT3BOD+azBIW+3wOJ4FhEH7zyaJCFvChjYvMA==}
     engines: {'0': node >=0.6.0}
@@ -534,10 +524,6 @@ packages:
       setprototypeof: registry.nlark.com/setprototypeof@1.2.0
       statuses: registry.npmmirror.com/statuses@1.5.0
       toidentifier: registry.npmmirror.com/toidentifier@1.0.1
-    dev: false
-
-  /import-meta-resolve@4.0.0:
-    resolution: {integrity: sha512-okYUR7ZQPH+efeuMJGlq4f8ubUgO50kByRPyt/Cy1Io4PSRsPjxME+YlVaCOx+NIToW7hCsZNFJyTPFFKepRSA==, tarball: https://registry.npmmirror.com/import-meta-resolve/-/import-meta-resolve-4.0.0.tgz}
     dev: false
 
   /ip@2.0.0:
@@ -1141,10 +1127,6 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       random-bytes: 1.0.0
-    dev: false
-
-  /url-or-path@2.3.0:
-    resolution: {integrity: sha512-5g9xpEJKjbAY8ikLU3XFpEg3hRLGt6SbCQmDElb1AL7JTW6vMi5Na5e3dMvONHisIu9VHgMAADLHJ8EznYR2ow==, tarball: https://registry.npmmirror.com/url-or-path/-/url-or-path-2.3.0.tgz}
     dev: false
 
   /validate-npm-package-license@3.0.4:

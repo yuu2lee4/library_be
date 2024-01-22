@@ -11,9 +11,8 @@ import router from "./routers/index.js";
 import { koaSwagger } from "koa2-swagger-ui";
 import swagger from "./routers/swagger.js";
 import config from "config";
-import createEsmUtils from 'esm-utils'
 
-const { dirname } = createEsmUtils(import.meta)
+const { dirname } =  import.meta;
 
 const databaseConfig = config.get('mongo');
 mongoose.connect(databaseConfig.url);

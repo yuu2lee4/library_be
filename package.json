@@ -13,7 +13,6 @@
     "@naviocean/koa-generic-session-mongo": "^0.4.5",
     "config": "^3.3.10",
     "date-fns": "^2.30.0",
-    "esm-utils": "^4.2.1",
     "koa": "^2.15.0",
     "koa-bodyparser": "^4.4.1",
     "koa-handle-error": "^0.0.5",
@@ -32,6 +31,6 @@
   "author": "yuri",
   "license": "ISC",
   "engines": {
-    "node": ">= 20.4.0"
+    "node": ">= 20.11.0"
   }
 }
