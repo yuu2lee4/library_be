@@ -3,7 +3,7 @@ import bodyParser from "koa-bodyparser";
 import mongoose from "mongoose";
 import serve from "koa-static";
 import session from "koa-session-minimal";
-import MongoStore from "koa-generic-session-mongo";
+import MongoStore from "@naviocean/koa-generic-session-mongo";
 import scheme from "koa-scheme";
 import errorHandler from "koa-handle-error";
 import path from "path";
@@ -35,11 +35,13 @@ app.use(errorHandler(onError))
     .use(serve(dirname + '/upload'))
     .use(serve(path.join(dirname, '/library_fe/dist')))
     .use(session({
-    cookie: ctx => ({
-        maxAge: ctx.session.pin ? 2 * 60 * 1000 : 24 * 60 * 60 * 1000
-    }),
-    store: new MongoStore()
-}))
+        cookie: ctx => ({
+            maxAge: ctx.session.pin ? 2 * 60 * 1000 : 24 * 60 * 60 * 1000
+        }),
+        store: new MongoStore({
+            url: databaseConfig.url
+        }),
+    }))
     .use(scheme(path.join(dirname + '/validate/scheme.cjs'), { debug: true }))
     .use(router.routes())
     .use(router.allowedMethods());
