@@ -32,10 +32,9 @@ export const get = async (ctx) => {
 export const list = async (ctx) => {
     let tag;
     if (ctx.query.ids) {
-        const ids = ctx.query.ids.split();
+        const ids = ctx.query.ids.split(',');
         tag = await Tag.find({ _id: { $in: ids } }).exec();
-    }
-    else {
+    } else {
         tag = await Tag.find().exec();
     }
     if (tag) {
@@ -71,7 +70,7 @@ export const deleteOne = async (ctx) => {
     ctx.body = { code: 0, data: true };
 };
 const delete$0 = async (ctx) => {
-    const ids = ctx.query.ids.split();
+    const ids = ctx.query.ids.split(',');
     await Tag.deleteMany({ _id: { $in: ids } }).exec();
     ctx.body = { code: 0, data: true };
 };

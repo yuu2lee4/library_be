@@ -138,7 +138,7 @@ export const deleteOne = async (ctx) => {
     ctx.body = { code: 0, data: true };
 };
 const delete$0 = async (ctx) => {
-    const ids = ctx.query.ids.split();
+    const ids = ctx.query.ids.split(',');
     await Book.deleteMany({ _id: { $in: ids } }).exec();
     ctx.body = { code: 0, data: true };
 };
