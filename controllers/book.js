@@ -38,10 +38,14 @@ export const list = async (ctx) => {
     let book;
     if (ctx.query.ids) {
         const ids = ctx.query.ids.split(',');
-        book = await Book.find({ _id: { $in: ids } }).exec();
+        book = await Book.find({ _id: { $in: ids } }).sort({
+            'meta.updateAt': -1,
+        }).exec();
     }
     else {
-        book = await Book.find().exec();
+        book = await Book.find().sort({
+            'meta.updateAt': -1,
+        }).exec();
     }
     if (book) {
         ctx.body = { code: 0, data: book };
@@ -51,10 +55,11 @@ export const search = async (ctx) => {
     const pageSize = ctx.query.pageSize * 1 || 10;
     const page = ctx.query.page * 1 || 1;
     const skipNum = (page - 1) * pageSize;
-    let searchBookPromise = Book.find({ title: new RegExp(ctx.query.title, 'i') }).limit(pageSize).skip(skipNum).exec();
-    let countNumerPromise = Book.count({ title: new RegExp(ctx.query.title, 'i') });
-    const books = await searchBookPromise;
-    const total = await countNumerPromise;
+    const searchBookPromise = Book.find({ title: new RegExp(ctx.query.title, 'i') }).limit(pageSize).skip(skipNum).sort({
+        'meta.updateAt': -1,
+    }).exec();
+    const countNumerPromise = Book.count({ title: new RegExp(ctx.query.title, 'i') });
+    const [books, total] = await Promise.all([searchBookPromise, countNumerPromise]);
     if (books.length) {
         ctx.body = {
             code: 0,
@@ -74,10 +79,11 @@ export const getBorrowedBooks = async (ctx) => {
     const pageSize = ctx.query.pageSize * 1 || 10;
     const page = ctx.query.page * 1 || 1;
     const skipNum = (page - 1) * pageSize;
-    let searchBookPromise = Book.find({ borrowers: { $not: { $size: 0 } } }).limit(pageSize).skip(skipNum).exec();
-    let countNumerPromise = Book.count({ borrowers: { $not: { $size: 0 } } });
-    const books = await searchBookPromise;
-    const total = await countNumerPromise;
+    const searchBookPromise = Book.find({ borrowers: { $not: { $size: 0 } } }).limit(pageSize).skip(skipNum).sort({
+        'meta.updateAt': -1,
+    }).exec();
+    const countNumerPromise = Book.count({ borrowers: { $not: { $size: 0 } } });
+    const [books, total] = await Promise.all([searchBookPromise, countNumerPromise]);
     if (books.length) {
         ctx.body = {
             code: 0,
@@ -97,10 +103,14 @@ const export$0 = async (ctx) => {
     let books;
     if (ctx.query.ids) {
         const ids = ctx.query.ids.split(',');
-        books = await Book.find({ _id: { $in: ids } }).exec();
+        books = await Book.find({ _id: { $in: ids } }).sort({
+            'meta.updateAt': -1,
+        }).exec();
     }
     else {
-        books = await Book.find({ borrowers: { $not: { $size: 0 } } }).exec();
+        books = await Book.find({ borrowers: { $not: { $size: 0 } } }).sort({
+            'meta.updateAt': -1,
+        }).exec();
     }
     if (books) {
         const exportData = [[
