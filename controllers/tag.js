@@ -45,10 +45,11 @@ export const search = async (ctx) => {
     const pageSize = ctx.query.pageSize * 1 || 10;
     const page = ctx.query.page * 1 || 1;
     const skipNum = (page - 1) * pageSize;
-    let searchTagPromise = Tag.find().limit(pageSize).skip(skipNum).exec();
-    let countNumerPromise = Tag.count();
-    const tags = await searchTagPromise;
-    const total = await countNumerPromise;
+    const searchTagPromise = Tag.find().limit(pageSize).skip(skipNum).sort({
+        'meta.updateAt': -1,
+    }).exec();
+    const countNumerPromise = Tag.count();
+    const [tags, total] = await Promise.all([searchTagPromise, countNumerPromise]);
     if (tags.length) {
         ctx.body = {
             code: 0,
