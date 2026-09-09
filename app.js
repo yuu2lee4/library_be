@@ -15,7 +15,6 @@ import config from "config";
 const { dirname } =  import.meta;
 
 const databaseConfig = config.get('mongo');
-mongoose.connect(databaseConfig.url);
 
 const app = new Koa();
 app.keys = ['keys', 'keykeys'];
@@ -46,6 +45,20 @@ app.use(errorHandler(onError))
     .use(router.allowedMethods());
     
 const { url, port } = config.get('server');
-app.listen(port, () => {
-    console.log(`app start : ${url}:${port}`);
-});
+
+const start = async () => {
+    try {
+        await mongoose.connect(databaseConfig.url);
+        console.log('database connected');
+
+        app.listen(port, () => {
+            console.log(`app start : ${url}:${port}`);
+        });
+    }
+    catch (error) {
+        console.error('database connection failed:', error);
+        process.exit(1);
+    }
+};
+
+start();
