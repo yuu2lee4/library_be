@@ -1,6 +1,17 @@
 import * as User from "../controllers/user.js";
 import Router from "@koa/router";
 import * as auth from "../middwares/auth.js";
+import { validate } from "../middwares/validate.js";
+import { verifyPin } from "../middwares/verifyPin.js";
+import {
+	borrowSchema,
+	getPinSchema,
+	ldapLoginSchema,
+	loginSchema,
+	registerSchema,
+	resetPasswordSchema,
+	returnSchema
+} from "../validate/user.schema.js";
 
 const router = new Router({ prefix: '/user' });
 /**
@@ -37,7 +48,7 @@ const router = new Router({ prefix: '/user' });
  *       200:
  *         description: Returns a mysterious string.
  */
-router.post('/register', User.register);
+router.post('/register', validate({ body: registerSchema }), verifyPin, User.register);
 /**
  * @openapi
  * /user/resetPassword:
@@ -72,7 +83,7 @@ router.post('/register', User.register);
  *       200:
  *         description: Returns a mysterious string.
  */
-router.post('/resetPassword', User.resetPassword);
+router.post('/resetPassword', validate({ body: resetPasswordSchema }), verifyPin, User.resetPassword);
 /**
  * @openapi
  * /user/login:
@@ -93,7 +104,7 @@ router.post('/resetPassword', User.resetPassword);
  *       200:
  *         description: 登录成功
  */
-router.post('/login', User.login);
+router.post('/login', validate({ body: loginSchema }), User.login);
 /**
  * @openapi
  * /user/ldapLogin:
@@ -114,7 +125,7 @@ router.post('/login', User.login);
  *       200:
  *         description: 登录成功
  */
-router.post('/ldapLogin', User.ldapLogin);
+router.post('/ldapLogin', validate({ body: ldapLoginSchema }), User.ldapLogin);
 /**
  * @openapi
  * /user/borrow:
@@ -135,7 +146,7 @@ router.post('/ldapLogin', User.ldapLogin);
  *       200:
  *         description: 借阅结果
  */
-router.post('/borrow', auth.isLogin, User.borrow);
+router.post('/borrow', auth.isLogin, validate({ body: borrowSchema }), User.borrow);
 /**
  * @openapi
  * /user/return:
@@ -156,7 +167,7 @@ router.post('/borrow', auth.isLogin, User.borrow);
  *       200:
  *         description: 归还结果
  */
-router.post('/return', auth.isLogin, User.return);
+router.post('/return', auth.isLogin, validate({ body: returnSchema }), User.return);
 /**
  * @openapi
  * /user/getPin:
@@ -183,7 +194,7 @@ router.post('/return', auth.isLogin, User.return);
  *       200:
  *         description: Returns a mysterious string.
  */
-router.post('/getPin', User.getPin);
+router.post('/getPin', validate({ body: getPinSchema }), User.getPin);
 /**
  * @openapi
  * /user:

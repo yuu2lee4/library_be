@@ -1,6 +1,15 @@
 import * as Book from "../controllers/book.js";
 import Router from "@koa/router";
 import * as auth from "../middwares/auth.js";
+import { validate } from "../middwares/validate.js";
+import {
+	bookIdParams,
+	bookIdsQuery,
+	bookListQuery,
+	bookSaveBody,
+	bookSearchQuery,
+	isbnParams
+} from "../validate/book.schema.js";
 
 const router = new Router({ prefix: '/book' });
 
@@ -15,7 +24,7 @@ const router = new Router({ prefix: '/book' });
  *     responses:
  *       200: { description: 书籍列表 }
  */
-router.get('/', Book.list);
+router.get('/', validate({ query: bookListQuery }), Book.list);
 /**
  * @openapi
  * /book/isbn/{isbn}:
@@ -27,7 +36,7 @@ router.get('/', Book.list);
  *     responses:
  *       200: { description: 书籍信息 }
  */
-router.get('/isbn/:isbn', Book.getByISBN);
+router.get('/isbn/:isbn', validate({ params: isbnParams }), Book.getByISBN);
 /**
  * @openapi
  * /book/search:
@@ -63,7 +72,7 @@ router.get('/isbn/:isbn', Book.getByISBN);
  *       200:
  *         description: 查询成功
  */
-router.get('/search', Book.search);
+router.get('/search', validate({ query: bookSearchQuery }), Book.search);
 /**
  * @openapi
  * /book/getBorrowedBooks:
@@ -77,7 +86,7 @@ router.get('/search', Book.search);
  *     responses:
  *       200: { description: 借出书籍列表 }
  */
-router.get('/getBorrowedBooks', Book.getBorrowedBooks);
+router.get('/getBorrowedBooks', validate({ query: bookSearchQuery }), Book.getBorrowedBooks);
 /**
  * @openapi
  * /book/export:
@@ -90,7 +99,7 @@ router.get('/getBorrowedBooks', Book.getBorrowedBooks);
  *     responses:
  *       200: { description: 导出文件地址 }
  */
-router.get('/export', Book.export);
+router.get('/export', validate({ query: bookListQuery }), Book.export);
 /**
  * @openapi
  * /book/{id}:
@@ -102,7 +111,7 @@ router.get('/export', Book.export);
  *     responses:
  *       200: { description: 书籍信息 }
  */
-router.get('/:id', Book.get);
+router.get('/:id', validate({ params: bookIdParams }), Book.get);
 /**
  * @openapi
  * /book:
@@ -118,7 +127,7 @@ router.get('/:id', Book.get);
  *     responses:
  *       200: { description: 保存结果 }
  */
-router.post('/', auth.isLogin, auth.isAdmin, Book.save);
+router.post('/', auth.isLogin, auth.isAdmin, validate({ body: bookSaveBody }), Book.save);
 /**
  * @openapi
  * /book/{id}:
@@ -131,7 +140,7 @@ router.post('/', auth.isLogin, auth.isAdmin, Book.save);
  *     responses:
  *       200: { description: 删除结果 }
  */
-router.delete('/:id', auth.isLogin, auth.isAdmin, Book.deleteOne);
+router.delete('/:id', auth.isLogin, auth.isAdmin, validate({ params: bookIdParams }), Book.deleteOne);
 /**
  * @openapi
  * /book:
@@ -144,5 +153,5 @@ router.delete('/:id', auth.isLogin, auth.isAdmin, Book.deleteOne);
  *     responses:
  *       200: { description: 删除结果 }
  */
-router.delete('/', auth.isLogin, auth.isAdmin, Book.delete);
+router.delete('/', auth.isLogin, auth.isAdmin, validate({ query: bookIdsQuery }), Book.delete);
 export default router;

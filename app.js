@@ -4,9 +4,6 @@ import mongoose from "mongoose";
 import serve from "koa-static";
 import session from "koa-session-minimal";
 import MongoStore from "@naviocean/koa-generic-session-mongo";
-import scheme from "koa-scheme";
-import errorHandler from "koa-handle-error";
-import path from "path";
 import router from "./routers/index.js";
 import { koaSwagger } from "koa2-swagger-ui";
 import swagger from "./routers/swagger.js";
@@ -18,10 +15,21 @@ const databaseConfig = config.get('mongo');
 
 const app = new Koa();
 app.keys = ['keys', 'keykeys'];
-const onError = err => {
-    console.error(err);
+const errorHandler = async (ctx, next) => {
+    try {
+        await next();
+    }
+    catch (error) {
+        console.error(error);
+        ctx.status = error.status || 500;
+        ctx.body = {
+            code: ctx.status,
+            msg: ctx.status === 500 ? '服务器内部错误' : error.message
+        };
+    }
 };
-app.use(errorHandler(onError))
+
+app.use(errorHandler)
     .use(swagger.routes(), swagger.allowedMethods())
     .use(koaSwagger({
         routePrefix: '/swagger',
@@ -31,7 +39,7 @@ app.use(errorHandler(onError))
     }))
     .use(bodyParser())
     .use(serve(dirname + '/upload'))
-    .use(serve(path.join(dirname, '/library_fe/dist')))
+    .use(serve(dirname + '/library_fe/dist'))
     .use(session({
         cookie: ctx => ({
             maxAge: ctx.session.pin ? 2 * 60 * 1000 : 24 * 60 * 60 * 1000
@@ -40,7 +48,6 @@ app.use(errorHandler(onError))
             url: databaseConfig.url
         }),
     }))
-    .use(scheme(path.join(dirname + '/validate/scheme.cjs'), { debug: true }))
     .use(router.routes())
     .use(router.allowedMethods());
     

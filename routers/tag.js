@@ -1,6 +1,14 @@
 import * as Tag from "../controllers/tag.js";
 import Router from "@koa/router";
 import * as auth from "../middwares/auth.js";
+import { validate } from "../middwares/validate.js";
+import {
+	tagIdParams,
+	tagIdsQuery,
+	tagListQuery,
+	tagSaveBody,
+	tagSearchQuery
+} from "../validate/tag.schema.js";
 
 const router = new Router({ prefix: '/tag' });
 
@@ -13,7 +21,7 @@ const router = new Router({ prefix: '/tag' });
  *     responses:
  *       200: { description: 标签列表 }
  */
-router.get('/', Tag.list);
+router.get('/', validate({ query: tagListQuery }), Tag.list);
 /**
  * @openapi
  * /tag/search:
@@ -26,7 +34,7 @@ router.get('/', Tag.list);
  *     responses:
  *       200: { description: 标签列表 }
  */
-router.get('/search', Tag.search);
+router.get('/search', validate({ query: tagSearchQuery }), Tag.search);
 /**
  * @openapi
  * /tag/{id}:
@@ -38,7 +46,7 @@ router.get('/search', Tag.search);
  *     responses:
  *       200: { description: 标签信息 }
  */
-router.get('/:id', Tag.get);
+router.get('/:id', validate({ params: tagIdParams }), Tag.get);
 /**
  * @openapi
  * /tag:
@@ -54,7 +62,7 @@ router.get('/:id', Tag.get);
  *     responses:
  *       200: { description: 保存结果 }
  */
-router.post('/', auth.isLogin, auth.isAdmin, Tag.save);
+router.post('/', auth.isLogin, auth.isAdmin, validate({ body: tagSaveBody }), Tag.save);
 /**
  * @openapi
  * /tag:
@@ -67,5 +75,5 @@ router.post('/', auth.isLogin, auth.isAdmin, Tag.save);
  *     responses:
  *       200: { description: 删除结果 }
  */
-router.delete('/', auth.isLogin, auth.isAdmin, Tag.delete);
+router.delete('/', auth.isLogin, auth.isAdmin, validate({ query: tagIdsQuery }), Tag.delete);
 export default router;
