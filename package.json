@@ -11,12 +11,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@koa/bodyparser": "^6.1.0",
     "@koa/router": "^15.7.0",
     "@naviocean/koa-generic-session-mongo": "^0.4.5",
     "config": "^4.4.2",
     "date-fns": "^4.4.0",
     "koa": "^3.2.1",
-    "koa-bodyparser": "^4.4.1",
     "koa-handle-error": "^0.0.5",
     "koa-scheme": "^3.0.0",
     "koa-session-minimal": "^4.0.3",

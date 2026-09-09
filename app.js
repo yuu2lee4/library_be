@@ -1,5 +1,5 @@
 import Koa from "koa";
-import bodyParser from "koa-bodyparser";
+import bodyParser from "@koa/bodyparser";
 import mongoose from "mongoose";
 import serve from "koa-static";
 import session from "koa-session-minimal";
