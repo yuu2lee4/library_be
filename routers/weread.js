@@ -5,6 +5,20 @@ import config from "config";
 
 const router = new Router({ prefix: '/weread' });
 
+/**
+ * @openapi
+ * /weread/gateway:
+ *   post:
+ *     summary: 转发微信读书 Agent Gateway 请求
+ *     tags: [微信读书模块]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema: { type: object, additionalProperties: true }
+ *     responses:
+ *       200: { description: 微信读书网关响应 }
+ */
 router.post('/gateway', async (ctx) => {
 	const wereadConfig = config.get('weread');
 	const response = await fetch(wereadConfig.gateway, {

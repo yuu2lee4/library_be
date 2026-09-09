@@ -6,22 +6,40 @@ const router = new Router();
 const options = {
     failOnErrors: true,
     definition: {
-        openapi: '3.0.0',
+        openapi: '3.0.3',
         info: {
-            title: '接口文档',
+            title: '鲲鹏图书借阅系统 API',
             version: '1.0.0',
         },
+        servers: [
+            { url: '/api' },
+        ],
+        tags: [
+            { name: '用户模块' },
+            { name: '书籍模块' },
+            { name: '标签模块' },
+            { name: '微信读书模块' },
+        ],
+        components: {
+            securitySchemes: {
+                sessionCookie: {
+                    type: 'apiKey',
+                    in: 'cookie',
+                    name: 'koa:sess',
+                    description: '登录后由服务端写入的 session cookie',
+                },
+            },
+        },
     },
-    //写有注解的router的存放地址, 最好使用path.join(),这里使用物理路径
     apis: [
-        path.join(import.meta.dirname, "./*.js"),
+        path.join(import.meta.dirname, "*.js"),
     ]
 };
 const swaggerSpec = swaggerJSDoc(options);
-router.prefix('/swagger'); //设置路由，与app.js中的路由配置保持一致
-// 通过路由获取生成的注解文件
+router.prefix('/swagger');
 router.get('/swagger.json', async function (ctx) {
-    ctx.set('Content-Type', 'application/json');
+    ctx.type = 'application/json';
     ctx.body = swaggerSpec;
 });
+export { swaggerSpec };
 export default router;

@@ -27,7 +27,7 @@ app.use(errorHandler(onError))
     .use(koaSwagger({
         routePrefix: '/swagger',
         swaggerOptions: {
-            url: 'swagger/swagger.json',
+            url: '/swagger/swagger.json',
         },
     }))
     .use(bodyParser())

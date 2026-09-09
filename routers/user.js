@@ -33,8 +33,6 @@ const router = new Router({ prefix: '/user' });
  *                 description: 重复密码
  *                 type: string
  *     description: 用户注册
- *     produces:
- *       - application/json
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -70,16 +68,94 @@ router.post('/register', User.register);
  *                 description: 重复密码
  *                 type: string
  *     description: 密码重置
- *     produces:
- *       - application/json
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
 router.post('/resetPassword', User.resetPassword);
+/**
+ * @openapi
+ * /user/login:
+ *   post:
+ *     summary: 用户登录
+ *     tags: [用户模块]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, password]
+ *             properties:
+ *               name: { type: string, description: 账号 }
+ *               password: { type: string, format: password, description: 密码 }
+ *     responses:
+ *       200:
+ *         description: 登录成功
+ */
 router.post('/login', User.login);
+/**
+ * @openapi
+ * /user/ldapLogin:
+ *   post:
+ *     summary: LDAP 登录
+ *     tags: [用户模块]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, password]
+ *             properties:
+ *               name: { type: string }
+ *               password: { type: string, format: password }
+ *     responses:
+ *       200:
+ *         description: 登录成功
+ */
 router.post('/ldapLogin', User.ldapLogin);
+/**
+ * @openapi
+ * /user/borrow:
+ *   post:
+ *     summary: 借阅书籍
+ *     tags: [用户模块]
+ *     security: [{ sessionCookie: [] }]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [id]
+ *             properties:
+ *               id: { type: string, description: 书籍 ID }
+ *     responses:
+ *       200:
+ *         description: 借阅结果
+ */
 router.post('/borrow', auth.isLogin, User.borrow);
+/**
+ * @openapi
+ * /user/return:
+ *   post:
+ *     summary: 归还书籍
+ *     tags: [用户模块]
+ *     security: [{ sessionCookie: [] }]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [id]
+ *             properties:
+ *               id: { type: string, description: 书籍 ID }
+ *     responses:
+ *       200:
+ *         description: 归还结果
+ */
 router.post('/return', auth.isLogin, User.return);
 /**
  * @openapi
@@ -103,13 +179,32 @@ router.post('/return', auth.isLogin, User.return);
  *                 description: 是否校验用户(注册为false或找回密码为true)
  *                 type: boolean
  *     description: 获取验证码
- *     produces:
- *       - application/json
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
 router.post('/getPin', User.getPin);
+/**
+ * @openapi
+ * /user:
+ *   get:
+ *     summary: 获取当前用户
+ *     tags: [用户模块]
+ *     security: [{ sessionCookie: [] }]
+ *     responses:
+ *       200:
+ *         description: 当前用户信息
+ */
 router.get('/', auth.isLogin, User.getUser);
+/**
+ * @openapi
+ * /user/logout:
+ *   get:
+ *     summary: 用户退出
+ *     tags: [用户模块]
+ *     responses:
+ *       200:
+ *         description: 退出结果
+ */
 router.get('/logout', User.logout);
 export default router;
