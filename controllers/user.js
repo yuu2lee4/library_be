@@ -29,7 +29,7 @@ export const getUser = async (ctx) => {
 };
 export const ldapLogin = async (ctx) => {
     try {
-        ldapOpt = config.get('ldap');
+        const ldapOpt = config.get('ldap');
         if (!ldapOpt)
             return ctx.body = { code: 208, msg: '未开启ldap功能' };
         const { name, password } = ctx.request.body;
@@ -115,52 +115,74 @@ export const getPin = async (ctx) => {
 };
 export const borrow = async (ctx) => {
     const user = await User.findById(ctx.session.user._id);
+    if (!user) {
+        ctx.status = 404;
+        ctx.body = { code: 404, msg: '用户不存在' };
+        return;
+    }
     if (user.borrowedBooks.length > 2) {
         ctx.body = { code: 206, msg: '最多只能同时借三本书哦！' };
+        return;
     }
-    else if (user.borrowedBooks.some((book) => book.id == ctx.request.body.id)) {
+    if (user.borrowedBooks.some(book => book.id.toString() === ctx.request.body.id)) {
         ctx.body = { code: 204, msg: '您已经借过相同的书了！' };
+        return;
     }
-    else {
-        const book = await Book.findById(ctx.request.body.id);
-        //找到一本未借出的书
-        const identifier = book.identifierList.find((identifier) => {
-            let notBorrowed = true;
-            for (const borrower of book.borrowers) {
-                if (borrower.identifier === identifier) {
-                    notBorrowed = false;
-                    break;
-                }
-            }
-            return notBorrowed;
-        });
-        if (identifier !== undefined) {
-            book.borrowers.push({ name: user.name, identifier });
-            user.borrowedBooks.push({ id: ctx.request.body.id, identifier });
-            user.notHashPassword = true;
-            await Promise.all([book.save(), user.save()]);
-            ctx.body = { code: 0, data: identifier };
-        }
-        else {
-            ctx.body = { code: 207, msg: '该书已被借完！' };
-        }
+
+    const book = await Book.findById(ctx.request.body.id);
+    if (!book) {
+        ctx.status = 404;
+        ctx.body = { code: 404, msg: '书籍不存在' };
+        return;
     }
+
+    const borrowedIdentifiers = new Set(book.borrowers.map(borrower => borrower.identifier));
+    const identifier = book.identifierList.find(item => !borrowedIdentifiers.has(item));
+    if (identifier === undefined) {
+        ctx.body = { code: 207, msg: '该书已被借完！' };
+        return;
+    }
+
+    book.borrowers.push({ name: user.name, identifier });
+    user.borrowedBooks.push({ id: ctx.request.body.id, identifier });
+    user.notHashPassword = true;
+    await Promise.all([book.save(), user.save()]);
+    ctx.body = { code: 0, data: identifier };
 };
 const return$0 = async (ctx) => {
-    let user = await User.findById(ctx.session.user._id);
-    const i = user.borrowedBooks.findIndex((book) => book.id == ctx.request.body.id);
-    if (i != -1) {
-        let book = await Book.findById(ctx.request.body.id);
-        const j = book.borrowers.findIndex((_user) => _user.name == user.name);
-        book.borrowers.splice(j, 1);
-        user.borrowedBooks.splice(i, 1);
-        user.notHashPassword = true;
-        await Promise.all([book.save(), user.save()]);
-        ctx.body = { code: 0, data: true };
+    const user = await User.findById(ctx.session.user._id);
+    if (!user) {
+        ctx.status = 404;
+        ctx.body = { code: 404, msg: '用户不存在' };
+        return;
     }
-    else {
+
+    const borrowedIndex = user.borrowedBooks.findIndex(book => book.id.toString() === ctx.request.body.id);
+    if (borrowedIndex === -1) {
         ctx.body = { code: 204, msg: '你没有借该书！' };
+        return;
     }
+
+    const borrowedBook = user.borrowedBooks[borrowedIndex];
+    const book = await Book.findById(ctx.request.body.id);
+    if (!book) {
+        ctx.status = 404;
+        ctx.body = { code: 404, msg: '书籍不存在' };
+        return;
+    }
+
+    const borrowerIndex = book.borrowers.findIndex(borrower => borrower.identifier === borrowedBook.identifier);
+    if (borrowerIndex === -1) {
+        ctx.status = 409;
+        ctx.body = { code: 409, msg: '借阅记录不一致' };
+        return;
+    }
+
+    book.borrowers.splice(borrowerIndex, 1);
+    user.borrowedBooks.splice(borrowedIndex, 1);
+    user.notHashPassword = true;
+    await Promise.all([book.save(), user.save()]);
+    ctx.body = { code: 0, data: true };
 };
 export const resetPassword = async (ctx) => {
     let user = await User.findOne({ name: ctx.request.body.name }).exec();

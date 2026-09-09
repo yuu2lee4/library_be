@@ -216,7 +216,7 @@ export const getByISBN = async (ctx) => {
             }
         };
     }
-    catch (error) {
+    catch {
         ctx.body = { code: 104, msg: 'ISBN服务请求失败' };
     }
 };

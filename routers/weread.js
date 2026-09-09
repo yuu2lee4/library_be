@@ -1,6 +1,8 @@
 import Router from "@koa/router";
 import config from "config";
+import * as auth from "../middwares/auth.js";
 import { validate } from "../middwares/validate.js";
+import { createRateLimiter } from "../middwares/rateLimit.js";
 import { wereadGatewayBody } from "../validate/weread.schema.js";
 
 // https://github.com/Tencent/WeChatReading/blob/main/skills/SKILL.md
@@ -21,7 +23,11 @@ const router = new Router({ prefix: '/weread' });
  *     responses:
  *       200: { description: 微信读书网关响应 }
  */
-router.post('/gateway', validate({ body: wereadGatewayBody }), async (ctx) => {
+router.post('/gateway',
+	validate({ body: wereadGatewayBody }),
+	auth.isLogin,
+	createRateLimiter({ limit: 30, windowMs: 60_000 }),
+	async (ctx) => {
 	const wereadConfig = config.get('weread');
 	const response = await fetch(wereadConfig.gateway, {
 		method: 'POST',

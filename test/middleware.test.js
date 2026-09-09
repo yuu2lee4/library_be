@@ -2,6 +2,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { validate } from '../middwares/validate.js';
 import { verifyPin } from '../middwares/verifyPin.js';
+import { createRateLimiter } from '../middwares/rateLimit.js';
 import { loginSchema } from '../validate/user.schema.js';
 
 const contextFor = body => ({
@@ -111,5 +112,27 @@ describe('verifyPin middleware', () => {
         });
 
         assert.equal(nextCalled, true);
+    });
+});
+
+describe('rate limit middleware', () => {
+    it('returns 429 after reaching the request limit', async () => {
+        const rateLimiter = createRateLimiter({ limit: 1, windowMs: 60_000 });
+        const context = {
+            ip: '127.0.0.1',
+            session: {},
+            set(name, value) {
+                this.headers = { ...this.headers, [name]: value };
+            }
+        };
+
+        await rateLimiter(context, async () => {});
+        await rateLimiter(context, async () => {
+            throw new Error('next should not be called');
+        });
+
+        assert.equal(context.status, 429);
+        assert.equal(context.body.code, 429);
+        assert.equal(context.headers['Retry-After'], '60');
     });
 });

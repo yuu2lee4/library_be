@@ -28,6 +28,6 @@ export const getPinSchema = z.object({
     checkUser: z.boolean()
 });
 export const borrowSchema = z.object({
-    id: z.string().min(1, '书籍 ID 不能为空')
+    id: z.string().regex(/^[a-f\d]{24}$/i, '书籍 ID 格式不正确')
 });
 export const returnSchema = borrowSchema;
