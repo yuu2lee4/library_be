@@ -25,5 +25,8 @@
     "openLibrary": {
         "url": "https://openlibrary.org",
         "coverURL": "https://covers.openlibrary.org"
+    },
+    "mock": {
+        "enable": false
     }
 }

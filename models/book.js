@@ -16,6 +16,7 @@ const BookSchema = new Schema({
         require: true,
         unique: true
     },
+    detailURL: String,
     title: String,
     author: String,
     identifierList: [String],

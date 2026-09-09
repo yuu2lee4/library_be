@@ -162,6 +162,22 @@ export const getByISBN = async (ctx) => {
     try {
         const openLibraryURL = config.get('openLibrary.url');
         const openLibraryCoverURL = config.get('openLibrary.coverURL');
+
+        if (config.get('mock.enable')) {
+            ctx.body = {
+                code: 0,
+                data: {
+                    isbn,
+                    detailURL: `${openLibraryURL}/works/OL45804W`,
+                    title: 'Fantastic Mr Fox',
+                    author: 'Roald Dahl',
+                    image: `${openLibraryCoverURL}/b/id/6498519-L.jpg`,
+                    summary: 'this is a good book'
+                }
+            };
+            return;
+        }
+
         const searchRes = await fetch(`${openLibraryURL}/search.json?isbn=${encodeURIComponent(isbn)}`);
         if (!searchRes.ok) {
             ctx.body = { code: 104, msg: 'Open Library服务异常' };
@@ -190,6 +206,7 @@ export const getByISBN = async (ctx) => {
             code: 0,
             data: {
                 isbn,
+                detailURL: book.key ? `${openLibraryURL}${book.key}` : '',
                 title: book.title || '',
                 author: book.author_name?.join(', ') || '',
                 image: book.cover_i
