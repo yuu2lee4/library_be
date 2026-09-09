@@ -28,5 +28,10 @@
     },
     "mock": {
         "enable": false
+    },
+    "weread": {
+        "apiKey": "",
+        "skillVersion": "1.0.4",
+        "gateway": "https://i.weread.qq.com/api/agent/gateway"
     }
 }
