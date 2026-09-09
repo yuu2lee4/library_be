@@ -1,8 +1,8 @@
 import * as Book from "../controllers/book.js";
-import koaRouter from "koa-router";
+import Router from "@koa/router";
 import * as auth from "../middwares/auth.js";
 
-const router = koaRouter({ prefix: '/book' });
+const router = new Router({ prefix: '/book' });
 
 router.get('/', Book.list);
 router.get('/isbn/:isbn', Book.getByISBN);

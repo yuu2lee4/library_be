@@ -1,9 +1,9 @@
-import koaRouter from "koa-router";
+import Router from "@koa/router";
 import config from "config";
 
 // https://github.com/Tencent/WeChatReading/blob/main/skills/SKILL.md
 
-const router = koaRouter({ prefix: '/weread' });
+const router = new Router({ prefix: '/weread' });
 
 router.post('/gateway', async (ctx) => {
 	const wereadConfig = config.get('weread');

@@ -1,8 +1,8 @@
 import * as Tag from "../controllers/tag.js";
-import koaRouter from "koa-router";
+import Router from "@koa/router";
 import * as auth from "../middwares/auth.js";
 
-const router = koaRouter({ prefix: '/tag' });
+const router = new Router({ prefix: '/tag' });
 
 router.get('/', Tag.list);
 router.get('/search', Tag.search);

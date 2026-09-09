@@ -1,8 +1,8 @@
-import koaRouter from "koa-router";
+import Router from "@koa/router";
 import path from "path";
 import swaggerJSDoc from "swagger-jsdoc";
 
-const router = koaRouter();
+const router = new Router();
 const options = {
     failOnErrors: true,
     definition: {

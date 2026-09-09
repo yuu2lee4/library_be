@@ -8,17 +8,20 @@ importers:
 
   .:
     dependencies:
+      '@koa/router':
+        specifier: ^15.7.0
+        version: 15.7.0(koa@3.2.1)
       '@naviocean/koa-generic-session-mongo':
         specifier: ^0.4.5
         version: 0.4.5
       config:
-        specifier: ^4.2.0
+        specifier: ^4.4.2
         version: 4.4.2
       date-fns:
-        specifier: ^4.1.0
+        specifier: ^4.4.0
         version: 4.4.0
       koa:
-        specifier: ^3.1.1
+        specifier: ^3.2.1
         version: 3.2.1
       koa-bodyparser:
         specifier: ^4.4.1
@@ -26,9 +29,6 @@ importers:
       koa-handle-error:
         specifier: ^0.0.5
         version: 0.0.5
-      koa-router:
-        specifier: ^12.0.1
-        version: 12.0.1
       koa-scheme:
         specifier: ^3.0.0
         version: 3.0.0
@@ -45,19 +45,19 @@ importers:
         specifier: ^2.3.3
         version: 2.3.3
       mongoose:
-        specifier: ^7.6.8
+        specifier: ^7.8.12
         version: 7.8.12
       node-xlsx:
         specifier: ^0.24.0
         version: 0.24.0
       nodemailer:
-        specifier: ^8.0.1
+        specifier: ^8.0.11
         version: 8.0.11
       swagger-jsdoc:
-        specifier: ^6.2.8
+        specifier: ^6.3.0
         version: 6.3.0(openapi-types@12.1.3)
       validator:
-        specifier: ^13.15.26
+        specifier: ^13.15.35
         version: 13.15.35
 
 packages:
@@ -92,6 +92,12 @@ packages:
   '@isaacs/cliui@9.0.0':
     resolution: {integrity: sha512-AokJm4tuBHillT+FpMtxQ60n8ObyXBatq7jD2/JA9dxbDDokKQm8KMht5ibGzLVU9IJDIKK4TPKgMHEYMn3lMg==}
     engines: {node: '>=18'}
+
+  '@koa/router@15.7.0':
+    resolution: {integrity: sha512-WaAlk4TOl/O0rhTpOR0l052gz03syPMmI6Pe2gd7v3ubjfv5UcSGcnb0Y/J5NNC/ln+5FiUqPJTc/a15I+XqAA==}
+    engines: {node: '>= 20'}
+    peerDependencies:
+      koa: ^2.0.0 || ^3.0.0
 
   '@mongodb-js/saslprep@1.5.2':
     resolution: {integrity: sha512-UBvCBdPHAmiiDNEpD2ORBGzna4qYr06fLELfGDPW3/KZ9uLK+cGT9npAc/x/6/8SLzdbILMuc3HWFQ0FvJMhCw==}
@@ -503,11 +509,6 @@ packages:
   koa-handle-error@0.0.5:
     resolution: {integrity: sha512-PkuC/C+2Cng1vlBsY/KvVSVGYpB4K6P7sD2yKNZ2BuRBSt4Vn888UOlE50TNF0QTXaMs1H5IlqgC+iyNmP3mAg==}
 
-  koa-router@12.0.1:
-    resolution: {integrity: sha512-gaDdj3GtzoLoeosacd50kBBTnnh3B9AYxDThQUo4sfUyXdOhY6ku1qyZKW88tQCRgc3Sw6ChXYXWZwwgjOxE0w==}
-    engines: {node: '>= 12'}
-    deprecated: 'Please use @koa/router instead, starting from v9! '
-
   koa-scheme@3.0.0:
     resolution: {integrity: sha512-+fkWjRsjspeQmqbIS0eW2ljW9wiNnJuZqDQb6voApy6R8bGvbiXbeFGtrGgizBagvhwyN/0o5vC21MLBo3LIdw==}
 
@@ -731,8 +732,8 @@ packages:
   path-to-regexp@6.2.2:
     resolution: {integrity: sha512-GQX3SSMokngb36+whdpRXE+3f9V8UzyAorlYvOGx87ufGHehNTn5lCxrKtLyZ4Yl/wEKnNnr98ZzOwwDZV5ogw==}
 
-  path-to-regexp@6.3.0:
-    resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
+  path-to-regexp@8.4.2:
+    resolution: {integrity: sha512-qRcuIdP69NPm4qbACK+aDogI5CBDMi1jKe0ry5rSQJz8JVLsC7jV8XpiJjGRLLol3N+R5ihGYcrPLTno6pAdBA==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -1011,6 +1012,16 @@ snapshots:
   '@hapi/bourne@3.0.0': {}
 
   '@isaacs/cliui@9.0.0': {}
+
+  '@koa/router@15.7.0(koa@3.2.1)':
+    dependencies:
+      debug: 4.4.3
+      http-errors: 2.0.1
+      koa: 3.2.1
+      koa-compose: 4.1.0
+      path-to-regexp: 8.4.2
+    transitivePeerDependencies:
+      - supports-color
 
   '@mongodb-js/saslprep@1.5.2':
     dependencies:
@@ -1409,16 +1420,6 @@ snapshots:
 
   koa-handle-error@0.0.5: {}
 
-  koa-router@12.0.1:
-    dependencies:
-      debug: 4.4.3
-      http-errors: 2.0.1
-      koa-compose: 4.1.0
-      methods: 1.1.2
-      path-to-regexp: 6.3.0
-    transitivePeerDependencies:
-      - supports-color
-
   koa-scheme@3.0.0:
     dependencies:
       debug: 4.4.3
@@ -1655,7 +1656,7 @@ snapshots:
 
   path-to-regexp@6.2.2: {}
 
-  path-to-regexp@6.3.0: {}
+  path-to-regexp@8.4.2: {}
 
   picocolors@1.1.1: {}
 

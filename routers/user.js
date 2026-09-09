@@ -1,8 +1,8 @@
 import * as User from "../controllers/user.js";
-import koaRouter from "koa-router";
+import Router from "@koa/router";
 import * as auth from "../middwares/auth.js";
 
-const router = koaRouter({ prefix: '/user' });
+const router = new Router({ prefix: '/user' });
 /**
  * @openapi
  * /user/register:
