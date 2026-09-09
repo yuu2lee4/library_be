@@ -22,8 +22,8 @@
         "searchDn": "OU=UserContainer,DC=test,DC=com",
         "searchStandard": "mail"
     },
-    "isbn": {
-        "api": "https://api.jike.xyz/situ/book/isbn",
-        "apikey": "需要申请apikey"
+    "openLibrary": {
+        "url": "https://openlibrary.org",
+        "coverURL": "https://covers.openlibrary.org"
     }
 }

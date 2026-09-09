@@ -153,19 +153,54 @@ const delete$0 = async (ctx) => {
     ctx.body = { code: 0, data: true };
 };
 export const getByISBN = async (ctx) => {
-    const isbn = ctx.params.isbn;
-    const res = await fetch(`${config.get('isbn.api')}/${isbn}?apikey=${config.get('isbn.apikey')}`);
-    if (res.ok) {
-        const data = await res.json();
-        if (data.ret === 0) {
-            ctx.body = { code: 0, data: data.data };
-        }
-        else {
-            ctx.body = { code: 103, msg: data.msg || '未知错误' };
-        }
+    const isbn = ctx.params.isbn.replace(/[-\s]/g, '');
+    if (!/^(?:\d{10}|\d{13})$/.test(isbn)) {
+        ctx.body = { code: 103, msg: 'ISBN格式不正确' };
+        return;
     }
-    else {
-        ctx.body = { code: 104, msg: res.statusText || '未知错误' };
+
+    try {
+        const openLibraryURL = config.get('openLibrary.url');
+        const openLibraryCoverURL = config.get('openLibrary.coverURL');
+        const searchRes = await fetch(`${openLibraryURL}/search.json?isbn=${encodeURIComponent(isbn)}`);
+        if (!searchRes.ok) {
+            ctx.body = { code: 104, msg: 'Open Library服务异常' };
+            return;
+        }
+
+        const searchData = await searchRes.json();
+        const book = searchData.docs?.[0];
+        if (!book) {
+            ctx.body = { code: 103, msg: '未查询到书籍' };
+            return;
+        }
+
+        let summary = '';
+        if (book.key) {
+            const detailRes = await fetch(`${openLibraryURL}${book.key}.json`);
+            if (detailRes.ok) {
+                const detail = await detailRes.json();
+                summary = typeof detail.description === 'string'
+                    ? detail.description
+                    : detail.description?.value || '';
+            }
+        }
+
+        ctx.body = {
+            code: 0,
+            data: {
+                isbn,
+                title: book.title || '',
+                author: book.author_name?.join(', ') || '',
+                image: book.cover_i
+                    ? `${openLibraryCoverURL}/b/id/${book.cover_i}-L.jpg`
+                    : '',
+                summary
+            }
+        };
+    }
+    catch (error) {
+        ctx.body = { code: 104, msg: 'ISBN服务请求失败' };
     }
 };
 export { export$0 as export };

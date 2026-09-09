@@ -22,8 +22,7 @@
     } 
 }
 ```
-8、如果使用isbn获取接口，需要配置config/default.json里的isbn.apiky  
-apikey需要去[申请](https://jike.xyz/jiekou/isbn.html)
+8、增加书籍时可通过ISBN从Open Library(需翻墙)获取书籍信息。
 
 9、如果使用ldap，需要配置config/default.json里的ldap
 ```json

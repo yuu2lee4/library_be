@@ -19,7 +19,6 @@ const BookSchema = new Schema({
     title: String,
     author: String,
     identifierList: [String],
-    doubanID: String,
     image: String,
     summary: String,
     tag_1st: String,
