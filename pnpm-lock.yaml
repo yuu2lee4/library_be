@@ -18,8 +18,8 @@ importers:
         specifier: ^0.4.5
         version: 0.4.5
       config:
-        specifier: ^4.4.2
-        version: 4.4.2
+        specifier: ^5.0.1
+        version: 5.0.1
       date-fns:
         specifier: ^4.4.0
         version: 4.4.0
@@ -340,9 +340,9 @@ packages:
     resolution: {integrity: sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q==}
     engines: {node: '>= 6'}
 
-  config@4.4.2:
-    resolution: {integrity: sha512-5HJD7TX70gOG2dAd72eDjDeSTYn6D8nOiKgysQQS8mRUo9X1wDtlzb1JlmIWkP+sM9zKRVdYJxmj+qmCsYu6DQ==}
-    engines: {node: '>= 20.0.0'}
+  config@5.0.1:
+    resolution: {integrity: sha512-vnJGpQA9FjKSTafO9TiNZr1+NiZAIuZXScp034tH+R6VH3Ufe7r+Z730j/f6/KQ2+kNIly6auTYloIaNhpK8lg==}
+    engines: {node: '>= 20.11.0'}
 
   content-disposition@1.0.1:
     resolution: {integrity: sha512-oIXISMynqSqm241k6kcQ5UwttDILMK4BiurCfGEREw6+X9jkkpEe5T9FZaApyLGGOnFuyMWZpdolTXMtvEJ08Q==}
@@ -1516,7 +1516,7 @@ snapshots:
 
   commander@6.2.0: {}
 
-  config@4.4.2:
+  config@5.0.1:
     dependencies:
       json5: 2.2.3
 

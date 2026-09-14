@@ -18,7 +18,7 @@
     "@koa/bodyparser": "^6.1.0",
     "@koa/router": "^15.7.0",
     "@naviocean/koa-generic-session-mongo": "^0.4.5",
-    "config": "^4.4.2",
+    "config": "^5.0.1",
     "date-fns": "^4.4.0",
     "koa": "^3.2.1",
     "koa-session-minimal": "^4.0.3",
