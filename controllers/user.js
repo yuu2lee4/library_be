@@ -4,6 +4,12 @@ import mailer from "../utils/mailer.js";
 import config from "config";
 import * as ldap from "../utils/ldap.js";
 
+export const publicUser = user => {
+    const data = user?.toObject ? user.toObject() : { ...user };
+    delete data.password;
+    return data;
+};
+
 export const register = async (ctx) => {
     const name = ctx.request.body.name;
     let user = await User.findOne({ name }).exec();
@@ -15,16 +21,14 @@ export const register = async (ctx) => {
         const newUser = await user.save();
         if (newUser) {
             delete ctx.session.pin;
-            delete newUser.password;
-            ctx.session.user = JSON.parse(JSON.stringify(newUser));
+            ctx.session.user = publicUser(newUser);
             ctx.body = { code: 0, data: ctx.session.user };
         }
     }
 };
 export const getUser = async (ctx) => {
     const user = await User.findById(ctx.session.user._id);
-    delete user.password;
-    ctx.session.user = JSON.parse(JSON.stringify(user));
+    ctx.session.user = publicUser(user);
     ctx.body = { code: 0, data: ctx.session.user };
 };
 export const ldapLogin = async (ctx) => {
@@ -43,8 +47,7 @@ export const ldapLogin = async (ctx) => {
             });
             user = await user.save();
         }
-        delete user.password;
-        ctx.session.user = JSON.parse(JSON.stringify(user));
+        ctx.session.user = publicUser(user);
         ctx.body = { code: 0, data: ctx.session.user };
     }
     catch (e) {
@@ -58,8 +61,7 @@ export const login = async (ctx) => {
     if (user) {
         const isMatch = await user.comparePassword(password);
         if (isMatch) {
-            delete user.password;
-            ctx.session.user = JSON.parse(JSON.stringify(user));
+            ctx.session.user = publicUser(user);
             ctx.body = { code: 0, data: ctx.session.user };
         }
         else {

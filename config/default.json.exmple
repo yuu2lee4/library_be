@@ -29,6 +29,24 @@
     "mock": {
         "enable": false
     },
+    "ai": {
+        "baseURL": "",
+        "apiKey": "",
+        "model": "",
+        "temperature": 0,
+        "stream": true,
+        "timeoutMs": 30000,
+        "maxRetries": 2,
+        "webSearch": {
+            "enabled": false,
+            "url": "https://api.bochaai.com/v1/web-search",
+            "apiKey": "",
+            "timeoutMs": 8000,
+            "freshness": "noLimit",
+            "summary": true,
+            "maxResults": 5
+        }
+    },
     "weread": {
         "apiKey": "",
         "skillVersion": "1.0.4",

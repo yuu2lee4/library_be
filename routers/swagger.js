@@ -19,6 +19,7 @@ const options = {
             { name: '书籍模块' },
             { name: '标签模块' },
             { name: '微信读书模块' },
+            { name: 'AI 模块' },
         ],
         components: {
             securitySchemes: {
